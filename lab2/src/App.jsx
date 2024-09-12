@@ -13,7 +13,8 @@ function App() {
     setNewToDo({ id: Math.random(), title: event.target.value });
   }
 
-  function handleSubmit() {
+  function handleSubmit(event) {
+    event.preventDefault();
     setToDos([...toDos, newToDo]);
   }
   return (
