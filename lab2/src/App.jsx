@@ -31,7 +31,7 @@ function App() {
     event.preventDefault();
   }
 
-  const filteredToDos = toDos.filter((toDo) => toDo.title.includes(search));
+  const filteredToDos = toDos.filter((toDo) => toDo.title?.includes(search));
   return (
     <>
       <div
