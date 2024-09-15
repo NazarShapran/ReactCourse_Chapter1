@@ -1,12 +1,14 @@
 import React from "react";
+import RemoveToDoComponent from "./RemoveToDoComponent";
 
-const ToDoTable = ({ toDos }) => {
+const ToDoTable = ({ toDos, onRemove }) => {
   return (
     <table>
       <thead>
         <tr>
           <th>Id</th>
           <th>Title</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -15,6 +17,9 @@ const ToDoTable = ({ toDos }) => {
             <tr key={toDo.id}>
               <td>{toDo.id.toString()}</td>
               <td>{toDo.title}</td>
+              <td>
+                <RemoveToDoComponent onSubmit={() => onRemove(toDo.id)} />
+              </td>
             </tr>
           );
         })}
