@@ -4,7 +4,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import ToDoTable from "./components/ToDoTable";
 import AddToDoComponet from "./components/AddToDoComponet";
-import SearchInputComponent from "./components/SearchInputComponetn";
+import SearchInputComponent from "./components/SearchInputComponent";
 import { useRemoveToDo } from "./hooks/useRemoveToDo";
 
 function App() {
@@ -16,10 +16,9 @@ function App() {
   function handleNewTitleChange(event) {
     setNewToDo({ title: event.target.value });
   }
-  const toDoWithId = { ...newToDo, id: Date.now() };
-
   function handleSubmit(event) {
     event.preventDefault();
+    const toDoWithId = { ...newToDo, id: Date.now() };
     setToDos([...toDos, toDoWithId]);
     setNewToDo(null);
   }
