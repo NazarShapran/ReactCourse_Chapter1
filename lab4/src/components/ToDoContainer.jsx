@@ -1,15 +1,17 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import ToDoTable from "./ToDoTable";
 import AddToDoComponet from "./AddToDoComponet";
 import SearchInputComponent from "./SearchInputComponent";
+import LoaderComponent from "./LoaderComponent";
 import { useRemoveToDo } from "../hooks/useRemoveToDo";
+import { useGetAllToDo } from "../hooks/useGetAllToDo";
 
 const ToDoContainer = () => {
   const [toDos, setToDos] = useState([]);
   const [newToDo, setNewToDo] = useState(null);
   const [search, setSearch] = useState("");
 
+  const { loading, error } = useGetAllToDo(setToDos);
   const { removeToDo } = useRemoveToDo(toDos, setToDos);
 
   function handleNewTitleChange(event) {
@@ -58,16 +60,22 @@ const ToDoContainer = () => {
         onTitleChange={handleNewTitleChange}
         onSubmit={handleSubmit}
       />
-      <div
-        style={{
-          backgroundColor: "gray",
-          borderRadius: "5px",
-          padding: "3px",
-          marginTop: "10px",
-        }}
-      >
-        <ToDoTable toDos={filteredToDos} onRemove={removeToDo} />
-      </div>
+      {loading ? (
+        <LoaderComponent />
+      ) : error ? (
+        <p>Error: {error.message}</p>
+      ) : (
+        <div
+          style={{
+            backgroundColor: "gray",
+            borderRadius: "5px",
+            padding: "3px",
+            marginTop: "10px",
+          }}
+        >
+          <ToDoTable toDos={filteredToDos} onRemove={removeToDo} />
+        </div>
+      )}
     </>
   );
 };
