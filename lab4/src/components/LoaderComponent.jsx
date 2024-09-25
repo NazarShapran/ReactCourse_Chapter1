@@ -1,14 +1,13 @@
 import React from "react";
-import { RotatingLines } from "react-loader-spinner";
+import { FallingLines } from "react-loader-spinner";
 
 const LoaderComponent = () => {
   return (
-    <RotatingLines
-      strokeColor="grey"
-      strokeWidth="5"
-      animationDuration="0.75"
-      width="96"
+    <FallingLines
+      color="grey"
+      width="100"
       visible={true}
+      ariaLabel="falling-circles-loading"
     />
   );
 };
