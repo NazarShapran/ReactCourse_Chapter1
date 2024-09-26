@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 
-export const useGetAllToDo = (setToDos) => {
+export const useGetAllToDo = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [toDos, setToDos] = useState([]);
+
 
   useEffect(() => {
     setLoading(true);
@@ -23,7 +25,7 @@ export const useGetAllToDo = (setToDos) => {
     };
 
     fetchData();
-  }, [setToDos]);
+  }, []);
 
-  return { loading, error };
+  return { loading, error, toDos, setToDos };
 };

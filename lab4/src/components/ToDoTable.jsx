@@ -2,6 +2,9 @@ import React from "react";
 import RemoveToDoComponent from "./RemoveToDoComponent";
 
 const ToDoTable = ({ toDos, onRemove }) => {
+  if (toDos.length === 0) {
+    return <div>no data to display</div>;
+  }
   return (
     <table>
       <thead>

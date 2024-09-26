@@ -7,11 +7,10 @@ import { useRemoveToDo } from "../hooks/useRemoveToDo";
 import { useGetAllToDo } from "../hooks/useGetAllToDo";
 
 const ToDoContainer = () => {
-  const [toDos, setToDos] = useState([]);
   const [newToDo, setNewToDo] = useState(null);
   const [search, setSearch] = useState("");
+  const { loading, error, toDos, setToDos } = useGetAllToDo();
 
-  const { loading, error } = useGetAllToDo(setToDos);
   const { removeToDo } = useRemoveToDo(toDos, setToDos);
 
   function handleNewTitleChange(event) {
@@ -38,6 +37,9 @@ const ToDoContainer = () => {
 
   const filteredToDos = toDos.filter((toDo) => toDo.title?.includes(search));
 
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
   return (
     <>
       <div
@@ -62,8 +64,6 @@ const ToDoContainer = () => {
       />
       {loading ? (
         <LoaderComponent />
-      ) : error ? (
-        <p>Error: {error.message}</p>
       ) : (
         <div
           style={{
@@ -73,7 +73,9 @@ const ToDoContainer = () => {
             marginTop: "10px",
           }}
         >
-          <ToDoTable toDos={filteredToDos} onRemove={removeToDo} />
+          <>
+            <ToDoTable toDos={filteredToDos} onRemove={removeToDo} />
+          </>
         </div>
       )}
     </>
