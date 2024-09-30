@@ -15,7 +15,7 @@ const Loader = () => {
 const LoaderComponent = ({ loading, children }) => {
   return (
     <>
-      {loading && Loader}
+      {loading && <Loader />}
       {children}
     </>
   );
