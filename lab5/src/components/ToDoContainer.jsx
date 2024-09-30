@@ -62,9 +62,7 @@ const ToDoContainer = () => {
         onTitleChange={handleNewTitleChange}
         onSubmit={handleSubmit}
       />
-      {loading ? (
-        <LoaderComponent />
-      ) : (
+      <LoaderComponent loading={loading}>
         <div
           style={{
             backgroundColor: "gray",
@@ -77,7 +75,7 @@ const ToDoContainer = () => {
             <ToDoTable toDos={filteredToDos} onRemove={removeToDo} />
           </>
         </div>
-      )}
+      </LoaderComponent>
     </>
   );
 };
