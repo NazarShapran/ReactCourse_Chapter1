@@ -4,8 +4,6 @@ import EditToDoComponent from "./EditToDoComponent";
 import { useState } from "react";
 
 const ToDoTable = ({ toDos, onRemove, onEdit }) => {
-  const [editId, setEditId] = useState(null);
-
   if (toDos.length === 0) {
     return <div>no data to display</div>;
   }

@@ -10,8 +10,8 @@ import { useEditToDo } from "../hooks/useEditToDo";
 const ToDoContainer = () => {
   const [newToDo, setNewToDo] = useState(null);
   const [search, setSearch] = useState("");
-  const { loading, error, toDos, setToDos } = useGetAllToDo();
 
+  const { loading, error, toDos, setToDos } = useGetAllToDo();
   const { removeToDo } = useRemoveToDo(toDos, setToDos);
   const { editToDo } = useEditToDo(toDos, setToDos);
 
