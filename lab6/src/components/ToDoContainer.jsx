@@ -5,7 +5,6 @@ import SearchInputComponent from "./SearchInputComponent";
 import LoaderComponent from "./LoaderComponent";
 import { useRemoveToDo } from "../hooks/useRemoveToDo";
 import { useGetAllToDo } from "../hooks/useGetAllToDo";
-import { useEditToDo } from "../hooks/useEditToDo";
 
 const ToDoContainer = () => {
   const [newToDo, setNewToDo] = useState(null);
@@ -13,7 +12,6 @@ const ToDoContainer = () => {
 
   const { loading, error, toDos, setToDos } = useGetAllToDo();
   const { removeToDo } = useRemoveToDo(toDos, setToDos);
-  const { editToDo } = useEditToDo(toDos, setToDos);
 
   function handleNewTitleChange(event) {
     setNewToDo({ title: event.target.value });
@@ -75,9 +73,10 @@ const ToDoContainer = () => {
         >
           <>
             <ToDoTable
-              toDos={filteredToDos}
+              toDos={toDos}
               onRemove={removeToDo}
-              onEdit={editToDo}
+              setToDos={setToDos}
+              filteredToDos={filteredToDos}
             />
           </>
         </div>
